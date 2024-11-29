@@ -1,27 +1,28 @@
 import { useState } from 'react'
+import {nanoid} from 'nanoid'
 import './App.css'
 
 import Die from './components/die'
 function App() {
-    /**
-     * Challenge: Update the array of numbers in state to be
-     * an array of objects instead. Each object should look like:
-     * { value: <random number>, isHeld: false }
-     * 
-     * Making this change will break parts of our code, so make
-     * sure to update things so we're back to a working state
-     */
-    
+
   function generateAllNewDice() {
-    return new Array(10).fill(0).map(() => Math.ceil(Math.random() * 6));
+    return new Array(10).fill(0).map(() => ({
+      value: Math.ceil(Math.random() * 6),
+      isHeld: false,
+      id: nanoid()
+    }));
   }
-  const [dice, setDice] = useState({value:generateAllNewDice(), isHeld: false});
-  
-  const diceElements = dice.value.map((number) => {
-    return <Die value={number} />
+  const [dice, setDice] = useState(generateAllNewDice());
+
+  const togglesHeld= () => {
+    setDice.isHeld(!isOn)
+  }  
+  const diceElements = dice.map( dieObject => {
+    return <Die value={dieObject.value} key={dieObject.id} isHeld={dieObject.isHeld}/>
   })
+
   function rollDice() {
-    setDice({value:generateAllNewDice(), isHeld: false});
+    setDice(generateAllNewDice());
   }
   
   return (
