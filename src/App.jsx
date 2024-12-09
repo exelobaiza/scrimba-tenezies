@@ -5,6 +5,22 @@ import './App.css'
 import Die from './components/die'
 function App() {
 
+   /**
+     * Challenge: Create a function `hold` that takes
+     * `id` as a parameter. For now, just have the function
+     * console.log(id).
+     * 
+     * Then, figure out how to pass that function down to each
+     * instance of the Die component so when each one is clicked,
+     * it logs its own unique ID property. (Hint: there's more
+     * than one way to make that work, so just choose whichever
+     * you want)
+     */
+    
+  function hold(id) {
+    console.log(id) 
+  }
+
   function generateAllNewDice() {
     return new Array(10).fill(0).map(() => ({
       value: Math.ceil(Math.random() * 6),
@@ -16,9 +32,15 @@ function App() {
 
   const togglesHeld= () => {
     setDice.isHeld(!isOn)
+    
   }  
   const diceElements = dice.map( dieObject => {
-    return <Die value={dieObject.value} key={dieObject.id} isHeld={dieObject.isHeld}/>
+    return <Die 
+    value={dieObject.value} 
+    key={dieObject.id} 
+    isHeld={dieObject.isHeld} 
+    hold={() => hold(dieObject.id)}
+    />
   })
 
   function rollDice() {
