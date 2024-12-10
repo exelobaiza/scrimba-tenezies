@@ -5,17 +5,6 @@ import './App.css'
 import Die from './components/die'
 function App() {
 
-/**
-     * Challenge: Update the `hold` function to flip
-     * the `isHeld` property on the object in the array
-     * that was clicked, based on the `id` prop passed
-     * into the function.
-     * 
-     * Hint: as usual, there's more than one way to 
-     * accomplish this.
-     */ 
-    
-
   function generateAllNewDice() {
     return new Array(10).fill(0).map(() => ({
       value: Math.ceil(Math.random() * 6),
@@ -44,7 +33,6 @@ function App() {
   function hold(id) {
     setDice(prevDice => prevDice.map(die => die.id === id? {...die, isHeld: !die.isHeld} : die))
   }
-  
   return (
     <div className="app-container">
       <div>
