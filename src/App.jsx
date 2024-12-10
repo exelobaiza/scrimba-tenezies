@@ -5,21 +5,16 @@ import './App.css'
 import Die from './components/die'
 function App() {
 
-   /**
-     * Challenge: Create a function `hold` that takes
-     * `id` as a parameter. For now, just have the function
-     * console.log(id).
+/**
+     * Challenge: Update the `hold` function to flip
+     * the `isHeld` property on the object in the array
+     * that was clicked, based on the `id` prop passed
+     * into the function.
      * 
-     * Then, figure out how to pass that function down to each
-     * instance of the Die component so when each one is clicked,
-     * it logs its own unique ID property. (Hint: there's more
-     * than one way to make that work, so just choose whichever
-     * you want)
-     */
+     * Hint: as usual, there's more than one way to 
+     * accomplish this.
+     */ 
     
-  function hold(id) {
-    console.log(id) 
-  }
 
   function generateAllNewDice() {
     return new Array(10).fill(0).map(() => ({
@@ -45,6 +40,9 @@ function App() {
 
   function rollDice() {
     setDice(generateAllNewDice());
+  }
+  function hold(id) {
+    setDice(prevDice => prevDice.map(die => die.id === id? {...die, isHeld: !die.isHeld} : die))
   }
   
   return (
