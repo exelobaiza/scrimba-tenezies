@@ -28,7 +28,7 @@ function App() {
   })
 
   function rollDice() {
-    setDice(generateAllNewDice());
+    setDice(prevDice => prevDice.map(die => die.isHeld ? die :{...die, value: Math.ceil(Math.random() * 6) }))
   }
   function hold(id) {
     setDice(prevDice => prevDice.map(die => die.id === id? {...die, isHeld: !die.isHeld} : die))
