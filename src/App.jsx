@@ -14,6 +14,12 @@ function App() {
   }
   const [dice, setDice] = useState(generateAllNewDice());
 
+  if(
+    dice.every(die => die.isHeld)
+    && dice.every(die => die.value === dice[0].value)){
+      console.log("Game Won!")
+    } 
+
   const togglesHeld= () => {
     setDice.isHeld(!isOn)
     
