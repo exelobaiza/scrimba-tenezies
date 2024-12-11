@@ -14,16 +14,12 @@ function App() {
   }
   const [dice, setDice] = useState(generateAllNewDice());
 
-  if(
-    dice.every(die => die.isHeld)
-    && dice.every(die => die.value === dice[0].value)){
-      console.log("Game Won!")
-    } 
+  const gameWon = dice.every(die => die.isHeld) && dice.every(die => die.value === dice[0].value)
+
 
   const togglesHeld= () => {
     setDice.isHeld(!isOn)
-    
-  }  
+    }  
   const diceElements = dice.map( dieObject => {
     return <Die 
     value={dieObject.value} 
@@ -47,7 +43,7 @@ function App() {
         <div className='dice-container'>
           {diceElements}
         </div>
-        <button className='roll-btn' onClick={rollDice}>Roll</button>
+        <button className='roll-btn' onClick={rollDice}>{gameWon ? "New Game" : "Roll"}</button>
       </div>
     </div>
   )
